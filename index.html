@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Yeseva+One&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" media="screen and (min-width: 321px)" href="style\style.css" />
+
+    <link rel="stylesheet" media="screen and (max-width: 320px)" href="style\styleMobile.css" />
+    <title>Comment</title>
+  </head>
+
+  <body>
+    <header></header>
+
+    <main>
+      <div class="main__left"></div>
+
+      <div class="main__right">
+        <div class="content">
+          <div class="content_div_small" id="item-0"></div>
+          <div class="content_div_small" id="item-1"></div>
+          <div class="content_div_small" id="item-2"></div>
+          <div class="content_div_small" id="item-3"></div>
+          <div class="content_div_small" id="item-4"></div>
+          <div class="content_div_small" id="item-5"></div>
+          <div class="content_div_small" id="item-6"></div>
+          <div class="content_div_small" id="item-7"></div>
+          <div class="content_div_large" id="item-8"></div>
+        </div>
+
+        <div class="comments_block">
+          <div class="title_comments">
+            <div class="first">
+              <p>Комментарии</p>
+              <p>(80)</p>
+            </div>
+            <div class="sort_count">
+              <div class="sort_name">
+                <p>По количеству оценок</p>
+                <img id="arrow" src="images\Arrow 1.svg" alt="arrow" />
+              </div>
+              <div class="sort_btn">
+                <div id="date">
+                  <img src="images\check.png" alt="check" />
+                  <p>По дате</p>
+                </div>
+                <div id="count_likes">
+                  <img src="images\check.png" alt="check" />
+                  <p>По количеству оценок</p>
+                </div>
+                <div id="actual">
+                  <img src="images\check.png" alt="check" />
+                  <p>По актуальности</p>
+                </div>
+                <div id="count_answers">
+                  <img src="images\check.png" alt="check" />
+                  <p>По количеству ответов</p>
+                </div>
+              </div>
+            </div>
+            <div class="favorites">
+              <p>Избранное</p>
+              <img src="images\Group 1171274238.svg" alt="hard" />
+            </div>
+          </div>
+
+          <div class="comment_author blockFetch">
+            <div id="avatar" class="avatar_author"></div>
+            <div class="text_on_message">
+              <div id="name" class="name_author"><p>Максим Авдеенко</p></div>
+              <div class="max_text"><p>Макс. 1000 символов</p></div>
+            </div>
+            <div class="warning_text"><p>Слишком длинное сообщение</p></div>
+            <div class="form_send">
+              <form id="send_comment">
+                <label>
+                  <textarea class="message" type="text" placeholder="Введите текст..."></textarea>
+                </label>
+              </form>
+            </div>
+            <button class="send" type="button" form="send_comment" disabled>Отправить</button>
+          </div>
+
+          <div class="allComments"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer></footer>
+
+    <script type="module" src="Main.js"></script>
+  </body>
+</html>
