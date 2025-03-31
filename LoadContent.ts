@@ -166,10 +166,12 @@ class LoadContent {
           }
 
           const idAnswerParentIndex: number = Number(localStorage.getItem(`idAnswerParent${i}.index${k}`));
-          const nameAuthor = nameAuthorComment.closest(".comment_people")!.querySelector(".name_author")!;
 
           messages[messages.length - idAnswerParentIndex - 1].appendChild(answer);
-          nameAuthorComment.innerText = `${nameAuthor.textContent}`;
+          if (nameAuthorComment.closest(".comment_people")!.querySelector(".name_author") !== null) {
+            const nameAuthor = nameAuthorComment.closest(".comment_people")!.querySelector(".name_author");
+            nameAuthorComment.innerText = `${nameAuthor!.textContent}`;
+          }
         }
       }
     }

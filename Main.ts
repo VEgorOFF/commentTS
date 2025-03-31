@@ -370,7 +370,7 @@ function padTo2Digits(num: number) {
   return num.toString().padStart(2, "0"); // Преобразует 9 в 09, а 10 оставит без изменений
 }
 
-function random(min: number, max: number) {
+function random(min: number, max: number): number {
   let rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 }
