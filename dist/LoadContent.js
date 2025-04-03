@@ -37,7 +37,7 @@ class LoadContent {
             }
             const underText = document.createElement("div");
             underText.className = "under_text";
-            underText.innerHTML = `<div class="button_answer"><img src="images/otvet.svg" alt="otvet" /><p>Ответить</p></div><div class="button_favorites"><img src="images/izbran.svg" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
+            underText.innerHTML = `<div class="button_answer"><img src="images/otvet.svg" alt="otvet" /><p>Ответить</p></div><div class="button_favorites"><img src="images/like_null.png" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
             authorAndMessage.appendChild(avatarAuthor);
             authorAndMessage.appendChild(authorAndText);
             authorAndText.appendChild(nameAuthor);
@@ -119,7 +119,7 @@ class LoadContent {
                             likeRandom = localStorage.getItem(`likeAnswer${i}.index${k}`);
                         }
                     }
-                    underText.innerHTML = `<div class="button_favorites"><img src="images/izbran.svg" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
+                    underText.innerHTML = `<div class="button_favorites"><img src="images/like_null.png" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
                     authorAndText.appendChild(cloneAuthorName);
                     authorAndText.appendChild(arrowAnswer);
                     authorAndText.appendChild(nameAuthorComment);

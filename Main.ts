@@ -64,6 +64,9 @@ function workSendComment() {
         buttonSend.classList.remove("hover-style");
         maxText.setAttribute("style", "color:red; opacity: 1;");
         warningText.style.display = "flex";
+        warningText.style.gridColumnStart = "1";
+        warningText.style.gridColumnEnd = "3";
+        warningText.style.justifyContent = "center";
       } else {
         maxText.setAttribute("style", "color:black; opacity: 0.4;");
         warningText.style.display = "none";
@@ -79,10 +82,8 @@ function workSendComment() {
     const newComment = document.createElement("div");
     newComment.className = "comment_people author_comments";
     newComment.setAttribute("data-index", `${messages.length}`);
-
     const authorAndMessage = document.createElement("div");
     authorAndMessage.className = "author_and_message";
-
     var nowTime = new Date();
     const authorAvatar = document.getElementById("avatar");
     const cloneAuthorAvatar = authorAvatar!.cloneNode(true);
@@ -98,12 +99,11 @@ function workSendComment() {
     commentText.className = "comment_text";
     commentText.innerText = `${textArea.value}`;
     localStorage.setItem(`authorComment${indexAuthorComment}`, `${commentText.textContent}`);
-
     const underText = document.createElement("div");
     underText.className = "under_text";
     let likeRandom: number;
     likeRandom = random(0, 10);
-    underText.innerHTML = `<div class="button_answer"><img src="images/otvet.svg" alt="otvet" /><p>Ответить</p></div><div class="button_favorites"><img src="images/izbran.svg" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
+    underText.innerHTML = `<div class="button_answer"><img src="images/otvet.svg" alt="otvet" /><p>Ответить</p></div><div class="button_favorites"><img src="images/like_null.png" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
     localStorage.setItem(`like${newComment.getAttribute("data-index")}`, `${likeRandom}`);
     authorAndText.appendChild(cloneAuthorName);
     authorAndText.appendChild(timeComment);
@@ -135,8 +135,8 @@ function workSendComment() {
 function workSendAnswers(messageAtributeIndex: number) {
   const formAnswer: HTMLElement | null = document.getElementById("form_answer");
   if (formAnswer !== null) {
-    formAnswer.style = "display: grid padding-left: 91px";
-    formAnswer.style = "padding-left: 91px";
+    formAnswer.style = "display: grid";
+    formAnswer.classList += " answer_padding";
 
     const buttonSendAnswer: HTMLButtonElement | null = formAnswer.querySelector(".send");
     const textAreaAnswer: HTMLInputElement | null = formAnswer.querySelector(".message");
@@ -145,6 +145,7 @@ function workSendAnswers(messageAtributeIndex: number) {
 
     let indexAuthorAnswer: number;
     let local: string | null = localStorage.getItem("indexAuthorAnswer");
+
     if (local !== null) {
       let localNumber: number = Number(local);
       indexAuthorAnswer = localNumber;
@@ -178,6 +179,9 @@ function workSendAnswers(messageAtributeIndex: number) {
             buttonSendAnswer.classList.remove("hover-style");
             maxTextAnswer.setAttribute("style", "color:red; opacity: 1;");
             warningTextAnswer.style.display = "flex";
+            warningTextAnswer.style.gridColumnStart = "1";
+            warningTextAnswer.style.gridColumnEnd = "3";
+            warningTextAnswer.style.justifyContent = "center";
           } else {
             maxTextAnswer.setAttribute("style", "color:black; opacity: 0.4;");
             warningTextAnswer.style.display = "none";
@@ -190,7 +194,6 @@ function workSendAnswers(messageAtributeIndex: number) {
       buttonSendAnswer.addEventListener("click", function () {
         const answer = document.createElement("div");
         answer.className = "answer";
-
         const authorAndMessage = document.createElement("div");
         authorAndMessage.className = "author_and_message";
         const avatarAuthor: HTMLElement = <HTMLElement>document.getElementById("avatar")!.cloneNode(true);
@@ -203,22 +206,18 @@ function workSendAnswers(messageAtributeIndex: number) {
         var nowTime = new Date();
         timeComment.className = "date_and_time";
         timeComment.innerText = `${padTo2Digits(nowTime.getDate())}.${padTo2Digits(nowTime.getMonth() + 1)} ${padTo2Digits(nowTime.getHours())}:${padTo2Digits(nowTime.getMinutes())}`;
-
         const arrowAnswer = document.createElement("img");
         arrowAnswer.src = "images/otvet.svg";
         arrowAnswer.alt = "ответ";
         const nameAuthorComment = document.createElement("div");
         nameAuthorComment.className = "name_author_comment";
-
         const commentText = document.createElement("div");
         commentText.className = "comment_text";
         commentText.innerText = `${textAreaAnswer.value}`;
         const underText = document.createElement("div");
         underText.className = "under_text under_text_answer";
-
         let likeRandom: number = random(0, 10);
-
-        underText.innerHTML = `<div class="button_favorites"><img src="images/izbran.svg" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
+        underText.innerHTML = `<div class="button_favorites"><img src="images/like_null.png" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
 
         authorAndText.appendChild(cloneAuthorName);
         authorAndText.appendChild(arrowAnswer);
@@ -286,7 +285,6 @@ document.addEventListener("click", (event) => {
       if (parent !== null) {
         parent.appendChild(cloneFormSend);
       }
-
       workSendAnswers(index);
     }
   }
@@ -304,10 +302,10 @@ document.addEventListener("click", (event) => {
         localStorage.removeItem(`active-favorites${id}.${buttonFavorites.closest(".answer")!.getAttribute("data-index")}`);
         buttonFavorites.removeAttribute(`active-favorites${id}-${buttonFavorites.closest(".answer")!.getAttribute("data-index")}`);
         buttonFavorites.style = "color: black";
-        buttonFavorites.innerHTML = '<img src="images/izbran.svg" alt="izbran" /><p>В избранное</p>';
+        buttonFavorites.innerHTML = '<img src="images/like_null.png" alt="izbran" /><p>В избранное</p>';
       } else {
         buttonFavorites.style = "color: red";
-        buttonFavorites.innerHTML = "<p>В избранном</p>";
+        buttonFavorites.innerHTML = '<img src="images/like_active.png" alt="izbran" /><p>В избранном</p>';
         buttonFavorites.setAttribute(`active-favorites${id}-${buttonFavorites.closest(".answer")!.getAttribute("data-index")}`, `${true}`);
         localStorage.setItem(`active-favorites${id}.${buttonFavorites.closest(".answer")!.getAttribute("data-index")}`, buttonFavorites.getAttribute(`active-favorites${id}-${buttonFavorites.closest(".answer")!.getAttribute("data-index")}`)!);
       }
@@ -316,10 +314,10 @@ document.addEventListener("click", (event) => {
         buttonFavorites.removeAttribute(`active-favorites${id}`);
         localStorage.removeItem(`active-favorites${id}`);
         buttonFavorites.style = "color: black";
-        buttonFavorites.innerHTML = '<img src="images/izbran.svg" alt="izbran" /><p>В избранное</p>';
+        buttonFavorites.innerHTML = '<img src="images/like_null.png" alt="izbran" /><p>В избранное</p>';
       } else {
         buttonFavorites.style = "color: red";
-        buttonFavorites.innerHTML = "<p>В избранном</p>";
+        buttonFavorites.innerHTML = '<img src="images/like_active.png" alt="izbran" /><p>В избранном</p>';
 
         buttonFavorites.setAttribute(`active-favorites${id}`, `${true}`);
         localStorage.setItem(`active-favorites${id}`, buttonFavorites.getAttribute(`active-favorites${id}`)!);
@@ -328,6 +326,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
+//сортировка
 function workSort() {
   const sortName: HTMLElement | null = document.querySelector(".sort_name p");
   const sortDate: HTMLElement | null = document.getElementById("date");
@@ -337,31 +336,41 @@ function workSort() {
   const arrow: HTMLElement | null = document.getElementById("arrow");
 
   sortName!.innerHTML = sortActual!.querySelector("p")!.textContent!;
+  arrow!.style.display = "none";
 
   sortDate!.addEventListener("click", function () {
     sortName!.innerHTML = sortDate!.querySelector("p")!.textContent!;
-    arrow!.style.transform = "rotate(0deg)";
-    arrow!.style.transition = "500ms ease-out";
+    if ((arrow!.style.display = "none")) {
+      arrow!.style.display = "flex";
+      arrow!.style.transform = "rotate(0deg)";
+      arrow!.style.transition = "500ms ease-out";
+    }
     sortComments.workSortDateComments();
   });
 
   sortCountLikes!.addEventListener("click", function () {
     sortName!.innerHTML = sortCountLikes!.querySelector("p")!.textContent!;
-    arrow!.style.transform = "rotate(0deg)";
-    arrow!.style.transition = "500ms ease-out";
+    if ((arrow!.style.display = "none")) {
+      arrow!.style.display = "flex";
+      arrow!.style.transform = "rotate(0deg)";
+      arrow!.style.transition = "500ms ease-out";
+    }
     sortComments.workSortLikes();
   });
 
   sortActual!.addEventListener("click", function () {
     sortName!.innerHTML = sortActual!.querySelector("p")!.textContent!;
-    arrow!.style.transform = "rotate(0deg)";
-    arrow!.style.transition = "500ms ease-out";
+    arrow!.style.display = "none";
+    sortComments.workSortDateComments();
   });
 
   sortCountAnswers!.addEventListener("click", function () {
     sortName!.innerHTML = sortCountAnswers!.querySelector("p")!.textContent!;
-    arrow!.style.transform = "rotate(0deg)";
-    arrow!.style.transition = "500ms ease-out";
+    if ((arrow!.style.display = "none")) {
+      arrow!.style.display = "flex";
+      arrow!.style.transform = "rotate(0deg)";
+      arrow!.style.transition = "500ms ease-out";
+    }
     sortComments.workSortCountAnswers();
   });
 }

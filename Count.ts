@@ -13,7 +13,6 @@ class Count {
       commentPeople[i].setAttribute("data-index", `${id}`);
       buttonAnswer[i].setAttribute("data-index", `${id}`);
       id = id - 1;
-
       localStorage.setItem(`id_comment[${i}]`, `${i}`);
     }
   }

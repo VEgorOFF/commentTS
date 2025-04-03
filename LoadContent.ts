@@ -23,6 +23,7 @@ class LoadContent {
       commentText.className = "comment_text";
       commentText.innerText = `${localStorage.getItem(`authorComment${i}`)}`;
       let likeRandom: number;
+
       if (localStorage.getItem(`newLike${newComment.getAttribute("data-index")}`) !== null) {
         likeRandom = Number(localStorage.getItem(`newLike${newComment.getAttribute("data-index")}`));
       } else {
@@ -36,7 +37,7 @@ class LoadContent {
 
       const underText = document.createElement("div");
       underText.className = "under_text";
-      underText.innerHTML = `<div class="button_answer"><img src="images/otvet.svg" alt="otvet" /><p>Ответить</p></div><div class="button_favorites"><img src="images/izbran.svg" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
+      underText.innerHTML = `<div class="button_answer"><img src="images/otvet.svg" alt="otvet" /><p>Ответить</p></div><div class="button_favorites"><img src="images/like_null.png" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
 
       authorAndMessage.appendChild(avatarAuthor);
       authorAndMessage.appendChild(authorAndText);
@@ -78,7 +79,6 @@ class LoadContent {
           divNumberLikes.removeAttribute("style");
         }
       }
-
       i++;
     }
   }
@@ -123,7 +123,7 @@ class LoadContent {
             }
           }
 
-          underText.innerHTML = `<div class="button_favorites"><img src="images/izbran.svg" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
+          underText.innerHTML = `<div class="button_favorites"><img src="images/like_null.png" alt="izbran" /><p>В избранное</p></div><div><button class="button_minus">-</button><p class="number_likes">${likeRandom}</p><button class="button_plus">+</button></div>`;
 
           authorAndText.appendChild(cloneAuthorName);
           authorAndText.appendChild(arrowAnswer);
